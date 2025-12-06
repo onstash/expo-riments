@@ -1,10 +1,10 @@
 1. There were no steps about Android setup or iOS setup.
 
-> Starting project at /Users/santoshvenkatraman/Personal/Coding/expo-riments
+> Starting project at /Users/<username>/Personal/Coding/expo-riments
 React Compiler enabled
 Starting Metro Bundler
-Failed to resolve the Android SDK path. Default install location not found: /Users/santoshvenkatraman/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
-Failed to resolve the Android SDK path. Default install location not found: /Users/santoshvenkatraman/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
+Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
+Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
 Error: spawn adb ENOENT
 Error: spawn adb ENOENT
     at Process.ChildProcess._handle.onexit (node:internal/child_process:285:19)
@@ -45,7 +45,7 @@ Step 2: Set up Android SDK through Android Studio
 Open Android Studio
 Go through the setup wizard (it will download the SDK)
 Go to Preferences → Appearance & Behavior → System Settings → Android SDK
-Note the SDK location (usually /Users/santoshvenkatraman/Library/Android/sdk)
+Note the SDK location (usually /Users/<username>/Library/Android/sdk)
 Install required components:
 Android SDK Platform (latest)
 Android SDK Build-Tools
