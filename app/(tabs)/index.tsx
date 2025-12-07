@@ -75,6 +75,22 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Experiments</ThemedText>
+        <ThemedText>
+          Check out these experimental features:
+        </ThemedText>
+        <Link href="/youtube-iframe" asChild>
+          <ThemedText style={styles.experimentLink}>
+            → YouTube Iframe Player
+          </ThemedText>
+        </Link>
+        <Link href="/reanimated/progress-bar-animation" asChild>
+          <ThemedText style={styles.experimentLink}>
+            → Progress Bar Animation
+          </ThemedText>
+        </Link>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
@@ -95,5 +111,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  experimentLink: {
+    color: '#007AFF',
+    paddingVertical: 4,
   },
 });
