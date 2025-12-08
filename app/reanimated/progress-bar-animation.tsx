@@ -14,7 +14,7 @@ import REAnimated, {
 
 const { width, height } = Dimensions.get("window");
 
-const progressBarMaxWidth = width - 32;
+const progressBarMaxWidth = width;
 
 const clog = (...args: unknown[]) => console.log('@onstash', performance.now(), '->', ...args);
 
@@ -170,14 +170,14 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     height: 4,
-    backgroundColor: "#CBCBCB",
-    marginHorizontal: 16,
+    backgroundColor: "#4A4A4A",
     zIndex: 2,
     borderRadius: 2,
   },
   progressBar: {
     height: 4,
     backgroundColor: "#FFFFFF",
+    zIndex: 3,
     borderRadius: 2,
   },
 });
