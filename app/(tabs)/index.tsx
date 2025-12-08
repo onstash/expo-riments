@@ -85,6 +85,11 @@ export default function HomeScreen() {
             → YouTube Iframe Player
           </ThemedText>
         </Link>
+        <Link href="/reanimated" asChild>
+          <ThemedText style={styles.experimentLink}>
+            → Reanimated
+          </ThemedText>
+        </Link>
         <Link href="/reanimated/progress-bar-animation" asChild>
           <ThemedText style={styles.experimentLink}>
             → Progress Bar Animation

@@ -16,6 +16,8 @@ const { width, height } = Dimensions.get("window");
 
 const progressBarMaxWidth = width - 32;
 
+const clog = (...args: unknown[]) => console.log('@onstash', performance.now(), '->', ...args);
+
 const useProgressBarAnimation = (
   animationConfig: {
     enabled: boolean;
@@ -28,11 +30,16 @@ const useProgressBarAnimation = (
 
   useEffect(() => {
     if (animationConfig.enabled) {
+      clog('Animation enabled');
       const onAnimationEndCallback = () => {
+        clog('Animation ended');
         cancelAnimation(progressBarWidth);
+        clog('Animation cancelled');
         progressBarWidth.value = withTiming(0, { duration: 0 });
+        clog('Animation reset');
         animationConfig.onAnimationEnd();
       };
+      clog('Animation enabled', animationConfig.duration);
       progressBarWidth.value = withTiming(
         1,
         { duration: animationConfig.duration },
@@ -44,8 +51,10 @@ const useProgressBarAnimation = (
       );
 
       return () => {
+        clog('Animation disabled');
         cancelAnimation(progressBarWidth);
         progressBarWidth.value = withTiming(0, { duration: 0 });
+        clog('Animation reset');
       };
     }
   }, [animationConfig.enabled, ...deps]);
@@ -70,7 +79,7 @@ export default function Page() {
     "playing" | "paused"
   >("paused");
 
-  const [storyDuration, setStoryDuration] = useState<number>(5000);
+  const [storyDuration, setStoryDuration] = useState<number>(5000 * 3);
 
   const progressBarAnimVal = useProgressBarAnimation(
     {
@@ -87,16 +96,21 @@ export default function Page() {
   );
 
   function updateMediaLoaded() {
+    clog('Media loaded');
     setMediaLoadedAtTimestamp(performance.now());
+    clog('Media loaded at', mediaLoadedAtTimestamp);
     setStoryPlayingStatus("playing");
+    clog('Story playing status', storyPlayingStatus);
   }
 
   function onAnimationEnd() {
     // Move to next story
+    clog('Animation ended');
   }
 
   function onAnimationPause(percentRemaining: number) {
     setStoryDuration((prev) => prev * percentRemaining);
+    clog('Animation paused', percentRemaining);
   }
 
   return (
@@ -105,7 +119,9 @@ export default function Page() {
         animVal={progressBarAnimVal}
         onAnimationEnd={onAnimationEnd}
       />
+      <REAnimated.View style={styles.pageContainer}>
       <Image source={source} style={styles.image} onLoad={updateMediaLoaded} />
+      </REAnimated.View>
     </>
   );
 }
@@ -129,26 +145,39 @@ function ProgressBar(props: ProgressBarProps) {
 
   return (
     <REAnimated.View
-      style={(styles.progressBarContainer, { width: progressBarMaxWidth })}
+      style={[styles.progressBarContainer, { width: progressBarMaxWidth }]}
     >
       <REAnimated.View
-        style={(styles.progressBar, animatedStyle)}
+        style={[styles.progressBar, animatedStyle]}
       ></REAnimated.View>
     </REAnimated.View>
   );
 }
 
 const styles = StyleSheet.create({
+  pageContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.9)",
+  },
   image: {
     width,
     height,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   progressBarContainer: {
-    height: 1,
+    height: 4,
     backgroundColor: "#CBCBCB",
+    marginHorizontal: 16,
+    zIndex: 2,
+    borderRadius: 2,
   },
   progressBar: {
-    height: 1,
+    height: 4,
     backgroundColor: "#FFFFFF",
+    borderRadius: 2,
   },
 });
