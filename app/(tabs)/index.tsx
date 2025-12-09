@@ -80,11 +80,6 @@ export default function HomeScreen() {
         <ThemedText>
           Check out these experimental features:
         </ThemedText>
-        <Link href="/youtube-iframe" asChild>
-          <ThemedText style={styles.experimentLink}>
-            → YouTube Iframe Player
-          </ThemedText>
-        </Link>
         <Link href="/reanimated" asChild>
           <ThemedText style={styles.experimentLink}>
             → Reanimated
