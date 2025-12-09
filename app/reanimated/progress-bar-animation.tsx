@@ -17,8 +17,8 @@ const { width, height } = Dimensions.get("window");
 const progressBarMaxWidth = width;
 
 const clog = (...args: unknown[]) => {
-  if (typeof console !== 'undefined' && console.log) {
-    console.log('@onstash', performance.now(), '->', ...args);
+  if (typeof console !== "undefined" && console.log) {
+    console.log("@onstash", performance.now(), "->", ...args);
   }
 };
 
@@ -34,16 +34,16 @@ const useProgressBarAnimation = (
 
   useEffect(() => {
     if (animationConfig.enabled) {
-      clog('Animation enabled');
+      clog("Animation enabled");
       const onAnimationEndCallback = () => {
-        clog('Animation ended');
+        clog("Animation ended");
         cancelAnimation(progressBarWidth);
-        clog('Animation cancelled');
+        clog("Animation cancelled");
         progressBarWidth.value = withTiming(0, { duration: 0 });
-        clog('Animation reset');
+        clog("Animation reset");
         animationConfig.onAnimationEnd();
       };
-      clog('Animation enabled', animationConfig.duration);
+      clog("Animation enabled", animationConfig.duration);
       progressBarWidth.value = withTiming(
         1,
         { duration: animationConfig.duration },
@@ -55,10 +55,10 @@ const useProgressBarAnimation = (
       );
 
       return () => {
-        clog('Animation disabled');
+        clog("Animation disabled");
         cancelAnimation(progressBarWidth);
         progressBarWidth.value = withTiming(0, { duration: 0 });
-        clog('Animation reset');
+        clog("Animation reset");
       };
     }
   }, [animationConfig.enabled, ...deps]);
@@ -69,8 +69,8 @@ const useProgressBarAnimation = (
 export default function Page() {
   // Demo story for the route - in a real app, this would come from route params or state
   const story = {
-    id: '1',
-    source: { uri: 'https://picsum.photos/400/800' }
+    id: "1",
+    source: { uri: "https://picsum.photos/400/800" },
   };
 
   const { id, source } = story;
@@ -87,34 +87,33 @@ export default function Page() {
 
   const progressBarAnimVal = useProgressBarAnimation(
     {
-      enabled:
-        Boolean(id &&
+      enabled: Boolean(
+        id &&
         storyPlayingStatus === "playing" &&
-        mediaLoadedAtTimestamp !== null),
+        mediaLoadedAtTimestamp !== null,
+      ),
       duration: storyDuration,
-      onAnimationEnd: () => {
-
-      }
+      onAnimationEnd: () => {},
     },
     [id],
   );
 
   function updateMediaLoaded() {
-    clog('Media loaded');
+    clog("Media loaded");
     setMediaLoadedAtTimestamp(performance.now());
-    clog('Media loaded at', mediaLoadedAtTimestamp);
+    clog("Media loaded at", mediaLoadedAtTimestamp);
     setStoryPlayingStatus("playing");
-    clog('Story playing status', storyPlayingStatus);
+    clog("Story playing status", storyPlayingStatus);
   }
 
   function onAnimationEnd() {
     // Move to next story
-    clog('Animation ended');
+    clog("Animation ended");
   }
 
   function onAnimationPause(percentRemaining: number) {
     setStoryDuration((prev) => prev * percentRemaining);
-    clog('Animation paused', percentRemaining);
+    clog("Animation paused", percentRemaining);
   }
 
   return (
@@ -124,7 +123,11 @@ export default function Page() {
         onAnimationEnd={onAnimationEnd}
       />
       <REAnimated.View style={styles.pageContainer}>
-      <Image source={source} style={styles.image} onLoad={updateMediaLoaded} />
+        <Image
+          source={source}
+          style={styles.image}
+          onLoad={updateMediaLoaded}
+        />
       </REAnimated.View>
     </>
   );

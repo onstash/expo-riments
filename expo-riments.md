@@ -1,17 +1,18 @@
 1. There were no steps about Android setup or iOS setup.
 
 > Starting project at /Users/<username>/Personal/Coding/expo-riments
-React Compiler enabled
-Starting Metro Bundler
-Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
-Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
-Error: spawn adb ENOENT
-Error: spawn adb ENOENT
+> React Compiler enabled
+> Starting Metro Bundler
+> Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
+> Failed to resolve the Android SDK path. Default install location not found: /Users/<username>/Library/Android/sdk. Use ANDROID_HOME to set the Android SDK location.
+> Error: spawn adb ENOENT
+> Error: spawn adb ENOENT
+
     at Process.ChildProcess._handle.onexit (node:internal/child_process:285:19)
     at onErrorNT (node:internal/child_process:483:16)
     at processTicksAndRejections (node:internal/process/task_queues:89:21)
 
-Solution: 
+Solution:
 
 Root Cause Analysis
 Based on my investigation, here's what I found:

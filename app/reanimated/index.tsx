@@ -1,6 +1,6 @@
-import { Button, View } from 'react-native';
+import { Button, View } from "react-native";
 
-import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
 
 export default function ReanimatedScreen() {
   const width = useSharedValue(100);
@@ -10,12 +10,12 @@ export default function ReanimatedScreen() {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center' }}>
+    <View style={{ flex: 1, alignItems: "center" }}>
       <Animated.View
         style={{
           width,
           height: 100,
-          backgroundColor: 'violet',
+          backgroundColor: "violet",
         }}
       />
       <Button onPress={handlePress} title="Click me" />
