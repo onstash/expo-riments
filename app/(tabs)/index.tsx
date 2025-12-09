@@ -95,6 +95,11 @@ export default function HomeScreen() {
             → Progress Bar Animation
           </ThemedText>
         </Link>
+        <Link href="/reanimated/floating-action-button-variant1" asChild>
+          <ThemedText style={styles.experimentLink}>
+            → Floating Action Button Variant 1
+          </ThemedText>
+        </Link>
       </ThemedView>
     </ParallaxScrollView>
   );
