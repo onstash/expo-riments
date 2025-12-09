@@ -16,7 +16,11 @@ const { width, height } = Dimensions.get("window");
 
 const progressBarMaxWidth = width;
 
-const clog = (...args: unknown[]) => console.log('@onstash', performance.now(), '->', ...args);
+const clog = (...args: unknown[]) => {
+  if (typeof console !== 'undefined' && console.log) {
+    console.log('@onstash', performance.now(), '->', ...args);
+  }
+};
 
 const useProgressBarAnimation = (
   animationConfig: {
